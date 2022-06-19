@@ -39,13 +39,13 @@ class StandardScaler:
 
     def __init__(self):
         """ object instantiation"""
-        self.stds = None  # an array with the stds of each feature.
+        self.stds = None  # an array with the sample stds of each feature.
         self.means = None  # an array with the means of each feature.
 
     def fit(self, X):
-        """ fit scaler by learning mean and std per feature (=per column) in X """
+        """ fit scaler by learning mean and sample std per feature (=per column) in X """
         self.means = [np.mean(X[:, i]) for i in range(X.shape[1])]
-        self.stds = [np.std(X[:, i]) for i in range(X.shape[1])]
+        self.stds = [np.std(X[:, i], ddof=1) for i in range(X.shape[1])]
 
     def transform(self, X):
         """ transform X by learned mean and standard deviation, and return it.
