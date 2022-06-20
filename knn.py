@@ -3,12 +3,73 @@ from scipy import stats
 from abc import abstractmethod
 from data import StandardScaler
 
+
 class KNN:
-    pass
+    def ___init___(self, k):
+        """ object instantiation"""
+        self.stds = None  # an array with the stds of each feature.
+        self.means = None  # an array with the means of each feature.
+
+        """save k"""
+        self.k = k
+
+        """define a scaler object"""
+        self.scaler = StandardScaler()
+
+    def fit(self, X_train, Y_train):
+        """ fit scaler"""
+        self.scaler.fit(self, X_train)
+
+        """save X_train and y_train"""
+        self.X_train = X_train
+        self.Y_train = Y_train
+
+    @abstractmethod
+    def predict(self, X_test):
+        """predict labels for X_test and return predicted labels"""
+
+    def neighbours_indices(self, x):
+        """for a given point x, find indices of k closest points in the training set"""
+        closest_k_points_indexes = []
+        for i in range(self.X_train.shape[0]):
+            if i < k:
+                closest_k_points_indexes += i
+            else:
+                temp_point_index = i
+                for j in range(len(closest_k_points)):
+                    if dist(x, self.X_train[j]) > dist(x, self.X_train[temp_point_index]):
+                        index_saver = closest_k_points_indexes[j]
+                        closest_k_points_indexes[j] = temp_point_index
+                        temp_point_index = index_saver
+        return closest_k_points_indexes
+
+        """distance_array = np.array(X_train.shape[1])
+        for each i in range(distance_array.shape[0]):
+            distance_array[i] = dist(X_train[i,:],x)
+
+        lowest_dist_index
+        for j in range(k):
+            lowest_dist = np.amin(distance_array)
+            lowest_dist_index =
+        scipy.stats.mode()"""
+
+    @staticmethod
+    def dist(x1, x2):
+        """return Eculidean distance between x1 and x2"""
+        return np.linalg.norm(x1 - x2)
 
 
 class RegressionKNN(KNN):
-    pass
+    def __init__(self, k):
+        """object instantiation, parent class instantiation"""
+        super().___init___(self, k)
+
+    def predict(self, X_test):
+        """predict labels for X_test and return predicted labels"""
+        closest_labels = np.zeros(self.k)
+        for point_index in range(X_test.shape[0]):
+            for index in super().neighbours_indices(super(RegressionKNN, self).predict())      
+            
 
 
 class ClassificationKNN(KNN):
