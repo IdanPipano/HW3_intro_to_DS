@@ -16,7 +16,7 @@ def adjust_labels(y):
     :param y: array of labels of seasons where 0=spring, 1=summer, 2=fall, 3=winter
     :return: adjusted array: 0 and 1 become 0, 2 and 3 become 1.
     """
-    return [0 if season == 0 or season == 1 else 1 for season in y]
+    return np.array([0 if season == 0 or season == 1 else 1 for season in y])
 
 
 def add_noise(data):

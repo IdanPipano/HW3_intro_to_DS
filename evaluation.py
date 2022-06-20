@@ -42,5 +42,8 @@ def rmse(y_true, y_pred):
 
 def visualize_results(k_list, scores, metric_name, title, path):
     """ plot a results graph for cross validation scores """
-    plt.plot(x=k_list, y=scores, x_label='k', y_label=metric_name, title=title)
-    plt.savefig(path=path)
+    plt.plot(k_list, scores)
+    plt.xlabel('k')
+    plt.ylabel(metric_name)
+    plt.title(title)
+    plt.savefig(path)

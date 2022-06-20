@@ -18,7 +18,7 @@ class KNN:
 
     def fit(self, X_train, Y_train):
         """ fit scaler"""
-        self.scaler.fit(self, X_train)
+        self.scaler.fit(X_train)
 
         """save X_train and y_train"""
         self.X_train = X_train
@@ -32,12 +32,12 @@ class KNN:
         """for a given point x, find indices of k closest points in the training set"""
         closest_k_points_indexes = []
         for i in range(self.X_train.shape[0]):
-            if i < k:
-                closest_k_points_indexes += i
+            if i < self.k:
+                closest_k_points_indexes.append(i)
             else:
                 temp_point_index = i
-                for j in range(len(closest_k_points)):
-                    if dist(x, self.X_train[j]) > dist(x, self.X_train[temp_point_index]):
+                for j in range(len(closest_k_points_indexes)):
+                    if self.dist(x, self.X_train[j]) > self.dist(x, self.X_train[temp_point_index]):
                         index_saver = closest_k_points_indexes[j]
                         closest_k_points_indexes[j] = temp_point_index
                         temp_point_index = index_saver
@@ -62,7 +62,7 @@ class KNN:
 class RegressionKNN(KNN):
     def __init__(self, k):
         """object instantiation, parent class instantiation"""
-        super().___init___(self, k)
+        super().___init___(k)
 
     def predict(self, X_test):
         """predict labels for X_test and return predicted labels"""
@@ -82,7 +82,7 @@ class RegressionKNN(KNN):
 class ClassificationKNN(KNN):
     def __init__(self, k):
         """object instantiation, parent class instantiation"""
-        super().___init___(self, k)
+        super().___init___(k)
 
     def predict(self, X_test):
         """predict labels for X_test and return predicted labels"""
@@ -92,5 +92,5 @@ class ClassificationKNN(KNN):
             closest_points_indexes = super().neighbours_indices(X_test[point_index])
             for i in range(self.k):
                 closest_labels[i] = self.Y_train[closest_points_indexes[i]]
-            predicted_labels[point_index] = scipy.stats.mode(closest_labels)[0]
+            predicted_labels[point_index] = stats.mode(closest_labels)[0]
         return predicted_labels
