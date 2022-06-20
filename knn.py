@@ -66,11 +66,31 @@ class RegressionKNN(KNN):
 
     def predict(self, X_test):
         """predict labels for X_test and return predicted labels"""
-        closest_labels = np.zeros(self.k)
+        predicted_labels = np.zeros(X_test.shape[0])
         for point_index in range(X_test.shape[0]):
-            for index in super().neighbours_indices(super(RegressionKNN, self).predict())      
+            closest_labels = np.zeros(self.k)
+            closest_points_indexes = super().neighbours_indices(X_test[point_index])
+            for i in range(self.k):
+                closest_labels[i] = self.Y_train[closest_points_indexes[i]]
+            predicted_labels[point_index] = np.average(closest_labels, weights=None)
+        return predicted_labels
+
+
             
 
 
 class ClassificationKNN(KNN):
-    pass
+    def __init__(self, k):
+        """object instantiation, parent class instantiation"""
+        super().___init___(self, k)
+
+    def predict(self, X_test):
+        """predict labels for X_test and return predicted labels"""
+        predicted_labels = np.zeros(X_test.shape[0])
+        for point_index in range(X_test.shape[0]):
+            closest_labels = np.zeros(self.k)
+            closest_points_indexes = super().neighbours_indices(X_test[point_index])
+            for i in range(self.k):
+                closest_labels[i] = self.Y_train[closest_points_indexes[i]]
+            predicted_labels[point_index] = scipy.stats.mode(closest_labels)[0]
+        return predicted_labels
