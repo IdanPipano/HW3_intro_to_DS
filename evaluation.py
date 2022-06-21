@@ -44,6 +44,6 @@ def visualize_results(k_list, scores, metric_name, title, path):
     """ plot a results graph for cross validation scores """
     plt.plot(k_list, scores)
     plt.xlabel('k')
-    plt.ylabel(metric_name)
+    #plt.ylabel(metric_name)
     plt.title(title)
     plt.savefig(path)
