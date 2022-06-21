@@ -18,10 +18,8 @@ class KNN:
 
     def fit(self, X_train, Y_train):
         """ fit scaler"""
-        self.scaler.fit(X_train)
-
+        self.X_train = self.scaler.fit_transform(X_train)
         """save X_train and y_train"""
-        self.X_train = X_train
         self.Y_train = Y_train
 
     @abstractmethod
@@ -29,6 +27,10 @@ class KNN:
         """predict labels for X_test and return predicted labels"""
 
     def neighbours_indices(self, x):
+        """for a given point x, find indices of k closest points in the training set"""
+        return sorted(np.arange(self.X_train.shape[0]), key=lambda i: self.dist(x, self.X_train[i]))[:self.k]
+
+    def alternative_neighbours_indices(self, x):
         """for a given point x, find indices of k closest points in the training set"""
         closest_k_points_indexes = []
         for i in range(self.X_train.shape[0]):
@@ -86,11 +88,12 @@ class ClassificationKNN(KNN):
 
     def predict(self, X_test):
         """predict labels for X_test and return predicted labels"""
-        predicted_labels = np.zeros(X_test.shape[0])
+        X_test = self.scaler.transform(X_test)
+        predicted_labels = np.zeros(X_test.shape[0], dtype=int)
         for point_index in range(X_test.shape[0]):
             closest_labels = np.zeros(self.k)
             closest_points_indexes = super().neighbours_indices(X_test[point_index])
             for i in range(self.k):
                 closest_labels[i] = self.Y_train[closest_points_indexes[i]]
-            predicted_labels[point_index] = stats.mode(closest_labels)[0]
+            predicted_labels[point_index] = stats.mode(closest_labels)[0][0]
         return predicted_labels
