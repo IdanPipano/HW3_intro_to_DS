@@ -36,12 +36,13 @@ def model_selection_cross_validation(model, k_list, X, y, folds, metric):
     :return: a list in the length of k_list, where each entry is the mean of the metrics for every fold.
             and a list in the length of k_list, where each entry is the sample std of the metrics for every fold.
     """
-    means = []
-    sample_stds = []
-    for k in k_list:
+    means = np.zeros_like(k_list, dtype=float)
+    sample_stds = np.zeros_like(k_list, dtype=float)
+    for i, k in enumerate(k_list):
         current_model = model(k)
-        means.append(np.mean(cross_validation_score(current_model, X, y, folds, metric)))
-        sample_stds.append(np.std(cross_validation_score(current_model, X, y, folds, metric), ddof=1))
+        list_of_metric_for_each_fold = np.array(cross_validation_score(current_model, X, y, folds, metric))
+        means[i] = np.mean(list_of_metric_for_each_fold)
+        sample_stds[i] = np.std(list_of_metric_for_each_fold, ddof=1)
 
     return means, sample_stds
 

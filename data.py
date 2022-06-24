@@ -45,7 +45,7 @@ class StandardScaler:
     def fit(self, X):
         """ fit scaler by learning mean and sample std per feature (=per column) in X """
         self.means = [np.mean(X[:, i]) for i in range(X.shape[1])]
-        self.stds = [np.std(X[:, i], ddof=0) for i in range(X.shape[1])]
+        self.stds = [np.std(X[:, i], ddof=1) for i in range(X.shape[1])]
 
     def transform(self, X):
         """ transform X by learned mean and standard deviation, and return it.

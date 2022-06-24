@@ -1,17 +1,28 @@
-Part1 - Classification
-k=3, mean score: 0.6334, std of scores: 0.0471
-k=5, mean score: 0.6282, std of scores: 0.0678
-k=11, mean score: 0.6629, std of scores: 0.0331
-k=25, mean score: 0.6771, std of scores: 0.0594
-k=51, mean score: 0.7048, std of scores: 0.0249
-k=75, mean score: 0.7144, std of scores: 0.0239
-k=101, mean score: 0.7012, std of scores: 0.0175
-
-Part2 - Regression
-k=3, mean score: 13.0823, std of scores: 0.7603
-k=5, mean score: 12.5599, std of scores: 0.5461
-k=11, mean score: 11.9578, std of scores: 0.4589
-k=25, mean score: 11.7461, std of scores: 0.6550
-k=51, mean score: 11.9539, std of scores: 0.6480
-k=75, mean score: 12.0184, std of scores: 0.5885
-k=101, mean score: 12.1023, std of scores: 0.5602
+Traceback (most recent call last):
+  File "C:/Users/pipan/OneDrive/מסמכים/GitHub/HW3_intro_to_DS/main.py", line 6, in <module>
+    import evaluation
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW3_intro_to_DS\evaluation.py", line 2, in <module>
+    import matplotlib.pyplot as plt
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\pyplot.py", line 57, in <module>
+    from matplotlib.figure import Figure, figaspect
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\figure.py", line 25, in <module>
+    from matplotlib import _blocking_input, docstring, projections
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\projections\__init__.py", line 55, in <module>
+    from .. import axes, docstring
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\axes\__init__.py", line 1, in <module>
+    from ._subplots import *
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\axes\_subplots.py", line 3, in <module>
+    from matplotlib.axes._axes import Axes
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\axes\_axes.py", line 27, in <module>
+    import matplotlib.table as mtable
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\table.py", line 237, in <module>
+    class Table(Artist):
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\artist.py", line 119, in __init_subclass__
+    cls._update_set_signature_and_docstring()
+  File "C:\Users\pipan\OneDrive\מסמכים\GitHub\HW2_intro_to_DS\venv\lib\site-packages\matplotlib\artist.py", line 137, in _update_set_signature_and_docstring
+    cls.set.__signature__ = Signature(
+  File "C:\Python310\lib\inspect.py", line 2944, in __init__
+    if param.default is _empty:
+  File "C:\Python310\lib\inspect.py", line 2684, in default
+    @property
+KeyboardInterrupt

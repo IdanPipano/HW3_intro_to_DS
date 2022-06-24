@@ -1,0 +1,17 @@
+Part1 - Classification
+k=3, mean score: 0.6334, std of scores: 0.0471
+k=5, mean score: 0.6282, std of scores: 0.0678
+k=11, mean score: 0.6629, std of scores: 0.0331
+k=25, mean score: 0.6771, std of scores: 0.0594
+k=51, mean score: 0.7048, std of scores: 0.0249
+k=75, mean score: 0.7144, std of scores: 0.0239
+k=101, mean score: 0.7012, std of scores: 0.0175
+
+Part2 - Regression
+k=3, mean score: 13.0823, std of scores: 0.7603
+k=5, mean score: 12.5599, std of scores: 0.5461
+k=11, mean score: 11.9578, std of scores: 0.4589
+k=25, mean score: 11.7461, std of scores: 0.6550
+k=51, mean score: 11.9539, std of scores: 0.6480
+k=75, mean score: 12.0184, std of scores: 0.5885
+k=101, mean score: 12.1023, std of scores: 0.5602

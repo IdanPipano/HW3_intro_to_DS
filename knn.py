@@ -28,32 +28,7 @@ class KNN:
 
     def neighbours_indices(self, x):
         """for a given point x, find indices of k closest points in the training set"""
-        return sorted(np.arange(self.X_train.shape[0], dtype=int), key=lambda i: self.dist(x, self.X_train[i]))[:self.k]
-
-    def alternative_neighbours_indices(self, x):
-        """for a given point x, find indices of k closest points in the training set"""
-        closest_k_points_indexes = []
-        for i in range(self.X_train.shape[0]):
-            if i < self.k:
-                closest_k_points_indexes.append(i)
-            else:
-                temp_point_index = i
-                for j in range(len(closest_k_points_indexes)):
-                    if self.dist(x, self.X_train[j]) > self.dist(x, self.X_train[temp_point_index]):
-                        index_saver = closest_k_points_indexes[j]
-                        closest_k_points_indexes[j] = temp_point_index
-                        temp_point_index = index_saver
-        return closest_k_points_indexes
-
-        """distance_array = np.array(X_train.shape[1])
-        for each i in range(distance_array.shape[0]):
-            distance_array[i] = dist(X_train[i,:],x)
-
-        lowest_dist_index
-        for j in range(k):
-            lowest_dist = np.amin(distance_array)
-            lowest_dist_index =
-        scipy.stats.mode()"""
+        return np.argsort(np.array([self.dist(x, train_point) for train_point in self.X_train]))[:self.k]
 
     @staticmethod
     def dist(x1, x2):
@@ -77,9 +52,6 @@ class RegressionKNN(KNN):
                 closest_labels[i] = self.Y_train[index]
             predicted_labels[point_index] = np.average(closest_labels, weights=None)
         return predicted_labels
-
-
-            
 
 
 class ClassificationKNN(KNN):

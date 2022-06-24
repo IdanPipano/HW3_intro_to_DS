@@ -4,12 +4,13 @@ import cross_validation
 import data
 import knn
 import evaluation
+import numpy as np
 
 
 def main(argv):
     df = data.load_data(path=argv[1])
     folds = data.get_folds()
-    k_list = [3, 5, 11, 25, 51, 75, 101]
+    k_list = np.array([3, 5, 11, 25, 51, 75, 101])
 
     print('Part1 - Classification')
     X = df.loc[:, ['t1', 't2', 'wind_speed', 'hum']].to_numpy()
@@ -19,7 +20,7 @@ def main(argv):
                                                                            metric=evaluation.f1_score)
     for k, mean, sample_std in zip(k_list, means, sample_stds):
         print(f'k={k}, mean score: {mean:.4f}, std of scores: {sample_std:.4f}')
-    evaluation.visualize_results(k_list, means, 'f1_score', 'Classification', path='Classification_plot.pdf')
+    evaluation.visualize_results(k_list, means, 'f1_score', 'Classification', path='Classification_plot.png')
     print()
 
     print('Part2 - Regression')
@@ -30,7 +31,7 @@ def main(argv):
                                                                            metric=evaluation.rmse)
     for k, mean, sample_std in zip(k_list, means, sample_stds):
         print(f'k={k}, mean score: {mean:.4f}, std of scores: {sample_std:.4f}')
-    evaluation.visualize_results(k_list, means, 'RMSE', 'Regression', path='Regression_plot.pdf')
+    evaluation.visualize_results(k_list, means, 'RMSE', 'Regression', path='Regression_plot.png')
 
 
 if __name__ == '__main__':
